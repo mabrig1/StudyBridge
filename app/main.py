@@ -15,7 +15,6 @@ import httpx
 from docx import Document
 from fastapi import FastAPI, File, HTTPException, Request, UploadFile
 from fastapi.responses import FileResponse
-from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 from pypdf import PdfReader
 
@@ -201,7 +200,18 @@ async def ask(payload: AskRequest):
         return {**offline, "notice": "Online tutor unavailable; showing grounded offline excerpts."}
 
 @app.get("/")
+@app.get("/index.html")
 def index():
     return FileResponse(STATIC / "index.html")
 
-app.mount("/", StaticFiles(directory=str(STATIC), html=True), name="static")
+@app.get("/sw.js")
+def service_worker():
+    return FileResponse(STATIC / "sw.js", media_type="application/javascript")
+
+@app.get("/manifest.webmanifest")
+def web_manifest():
+    return FileResponse(STATIC / "manifest.webmanifest", media_type="application/manifest+json")
+
+@app.get("/favicon.svg")
+def icon():
+    return FileResponse(STATIC / "favicon.svg", media_type="image/svg+xml")
