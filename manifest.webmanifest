@@ -1,0 +1,18 @@
+{
+  "name": "StudyBridge — Your Learning Companion",
+  "short_name": "StudyBridge",
+  "description": "Offline-first course notes, questions, quizzes, and study circles.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f5f7f4",
+  "theme_color": "#08695e",
+  "icons": [
+    {
+      "src": "./favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
